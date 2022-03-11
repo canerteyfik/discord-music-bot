@@ -9,8 +9,9 @@ exports.executeList = async function executeList(msg, linkList) {
             if (stream != undefined) {
                 execute(stream);
                 msg.channel.send('Now playing ' + link);
+            }else{
+                console.log("stream is undefined");
             }
-            console.log("stream is undefined");
             return;
         } catch (e) {
             console.log(e);
