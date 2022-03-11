@@ -8,7 +8,7 @@ exports.play = async function play(isConnected, msg, linkList) {
         return;
     }
     if (connection) {
-        console.log(isPlayingAudio)
+        // console.log(isPlayingAudio)
         if (!isPlayingAudio) {
             await createLinkList(linkList, msg);
             if (linkList.length > 0) {
