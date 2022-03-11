@@ -4,11 +4,17 @@ exports.execute= function execute(stream){
     if(stream===undefined){
         return;
     }
-    const resource =  createAudioResource(stream, {
-        inlineVolume: true,
-    });
-    resource.volume.setVolume(0.5);
-    connection.subscribe(player);
-    player.play(resource);
+    try{
+        const resource =  createAudioResource(stream, {
+            inlineVolume: true,
+        });
+        resource.volume.setVolume(0.5);
+        connection.subscribe(player);
+        player.play(resource);
+        return;
+    }catch(e){
+        console.log(e);
+        console.log('An error was encountered while playing the stream.');
+    }
     return;
 }
