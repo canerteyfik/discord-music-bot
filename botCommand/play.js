@@ -8,18 +8,18 @@ exports.play = async function play(isConnected, msg, linkList) {
         return;
     }
     if (connection) {
-        // console.log(isPlayingAudio)
         if (!isPlayingAudio) {
             await createLinkList(linkList, msg);
             if (linkList.length > 0) {
                 await executeList(msg, linkList);
-                //console.log(linkList.length);
             }
-            //console.log(player.state.status);
             isPlayingAudio = true;
         } else {
-            await createLinkList(linkList, msg);
-            //console.log('eklendi ' + linkList.length);
+            try {
+                await createLinkList(linkList, msg);
+            } catch (err) {
+                console.log(err);
+            }
         }
     }
 }
