@@ -40,8 +40,8 @@ async function findVideoUrl(tmp) {
         }
         let baseVideoUrl = "https://www.youtube.com/watch?v=";
         return baseVideoUrl + videoId;
-    } catch (error) {
-        console.log(error);
+    } catch (err) {
+        console.log(err);
     }
     return baseVideoUrl + videoId;
 }

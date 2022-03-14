@@ -12,9 +12,7 @@ exports.execute= function execute(stream){
         connection.subscribe(player);
         player.play(resource);
         return;
-    }catch(e){
-        console.log(e);
-        console.log('An error was encountered while playing the stream.');
+    }catch(err){
+        throw "execute error";
     }
-    return;
 }
