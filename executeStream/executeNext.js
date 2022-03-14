@@ -6,14 +6,18 @@ exports.executeNext = async function executeNext(linkList,msgOut) {
         isPlayingAudio=false;
         return;
     }
-    if(linkList.length>0){
-        let link = linkList.shift();
-        let stream =await createStream(link);
-        execute(stream);
-        if(msgOut){
-            msgOut.channel.send('Now playing '+link);
+    try {
+        if(linkList.length>0){
+            let link = linkList.shift();
+            let stream =await createStream(link);
+            execute(stream);
+            if(msgOut){
+                msgOut.channel.send('Now playing '+link);
+            }
+            return;
         }
-        return;
+    } catch (err) {
+        console.log(err);
     }
     return;
 }

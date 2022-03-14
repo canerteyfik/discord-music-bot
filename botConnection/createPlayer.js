@@ -7,6 +7,5 @@ exports.createPlayer=function createPlayer(){
             
         }
     });
-    
     return player;
 }

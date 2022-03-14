@@ -13,6 +13,6 @@ exports.execute= function execute(stream){
         player.play(resource);
         return;
     }catch(err){
-        throw "execute error";
+        console.log(err);
     }
 }
