@@ -56,14 +56,6 @@ client.on('messageCreate', async msg => {
         }
     }
 });
-/*player.addListener("stateChange", async (oldOne, newOne) => {
-    if (newOne.status === "idle") {
-        if(linkList===0){
-            isPlayingAudio=false;
-        }
-        await executeNext(linkList,msgOut);
-    }
-});*/
 player.on(AudioPlayerStatus.Idle , async ()=>{
 
     console.log(linkList.length);

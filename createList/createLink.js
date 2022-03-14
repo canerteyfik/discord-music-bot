@@ -21,28 +21,27 @@ exports.createLink = async function createLink(msg) {
     if (!ytdl.validateURL(sumArray)) {
         let videoUrl = await findVideoUrl(sumArray);
         if (videoUrl !== 'https://www.youtube.com/watch?v=') {
-            
             return videoUrl;
         }
         msg.reply("Geçerli bir youtube linki giriniz.");
         return undefined;
     }
-    // let stream = await ytdl(sumArray, {
-    //     filter: 'audioonly',
-    //     quality: 'highest',
-
-    // });
     return sumArray;
 }
 
 async function findVideoUrl(tmp) {
-    let requestUrl = `${baseApiUrl}/search?key=${apiKey}&type=video&part=snippet&q=${tmp}`;
-    requestUrl=encodeURI(requestUrl);
-    let response = await axios.get(requestUrl);
-    let videoId = '';
-    if (response) {
-        videoId = response.data.items[0].id.videoId;
+    try {
+        let requestUrl = `${baseApiUrl}/search?key=${apiKey}&type=video&part=snippet&q=${tmp}`;
+        requestUrl = encodeURI(requestUrl);
+        let response = await axios.get(requestUrl);
+        let videoId = '';
+        if (response) {
+            videoId = response.data.items[0].id.videoId;
+        }
+        let baseVideoUrl = "https://www.youtube.com/watch?v=";
+        return baseVideoUrl + videoId;
+    } catch (error) {
+        console.log(error);
     }
-    let baseVideoUrl = "https://www.youtube.com/watch?v=";
     return baseVideoUrl + videoId;
 }
