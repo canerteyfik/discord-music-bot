@@ -1,12 +1,15 @@
 const {token, prefix} = require('../config/config.json')
-const {Client, Intents} = require('discord.js');
+const {Client, GatewayIntentBits,Partials } = require('discord.js');
 const {createAudioPlayer, NoSubscriberBehavior, createAudioResource} = require('@discordjs/voice');
 const {AudioPlayerStatus, VoiceConnectionStatus} = require("@discordjs/voice");
 const client = new Client({
-    intents: [Intents.FLAGS.GUILDS,
-        Intents.FLAGS.GUILD_MESSAGES,
-        Intents.FLAGS.GUILD_VOICE_STATES,
-    ]
+    intents: [GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildVoiceStates,
+        GatewayIntentBits.MessageContent,
+    ],
+    partials: [Partials.Channel],
+    
 });
 
 client.once('ready', () => {
@@ -37,6 +40,7 @@ client.on('messageCreate', async msg => {
     if (!msg.content.startsWith(prefix)) return;
     if (msg.content.startsWith(`${prefix}play`)) {
         //bağlantı sağlandı
+        
         const connection = createConnection(msg);
         global.connection = connection;
         isConnected = true;
