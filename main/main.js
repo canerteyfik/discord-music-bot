@@ -62,9 +62,7 @@ client.on('messageCreate', async msg => {
 });
 player.on(AudioPlayerStatus.Idle , async ()=>{
 
-    console.log(linkList.length);
     if(linkList.length===0){
-        console.log('girdi');
         isPlayingAudio=false;
         return;
     }
